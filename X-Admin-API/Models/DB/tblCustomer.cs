@@ -35,5 +35,7 @@ namespace X_Admin_API.Models.DB
         public string cust_Phone2 { get; set; }
         public Nullable<int> cust_PriceListID { get; set; }
         public string cust_Zone { get; set; }
+        public string gender { get; set; }
+        public string note { get; set; }
     }
 }

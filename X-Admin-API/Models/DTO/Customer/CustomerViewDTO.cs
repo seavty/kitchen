@@ -8,7 +8,6 @@ namespace X_Admin_API.Models.DTO.Customer
 {
     public class CustomerViewDTO : CustomerBase
     {
-        [JsonProperty(Order = 2)]
-        public string code { get; set; }
+        
     }
 }

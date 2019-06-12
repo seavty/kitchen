@@ -90,6 +90,8 @@
           <Property Name="cust_Phone2" Type="nvarchar" MaxLength="50" />
           <Property Name="cust_PriceListID" Type="int" />
           <Property Name="cust_Zone" Type="nvarchar" MaxLength="50" />
+          <Property Name="cust_Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="cust_Note" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="tblInvoice">
           <Key>
@@ -234,6 +236,19 @@
           <Property Name="itwh_Qty" Type="numeric" Precision="18" Scale="6" />
           <Property Name="itwh_SOAllocation" Type="numeric" Precision="18" Scale="6" />
           <Property Name="itwh_ItemLayout1" Type="int" />
+        </EntityType>
+        <EntityType Name="tblMenuGroup">
+          <Key>
+            <PropertyRef Name="mnug_MenuGroupID" />
+          </Key>
+          <Property Name="mnug_MenuGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mnug_CreatedBy" Type="int" />
+          <Property Name="mnug_CreatedDate" Type="datetime" />
+          <Property Name="mnug_UpdatedBy" Type="int" />
+          <Property Name="mnug_UpdatedDate" Type="datetime" />
+          <Property Name="mnug_Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="mnug_Note" Type="nvarchar" MaxLength="500" />
+          <Property Name="mnug_Deleted" Type="int" />
         </EntityType>
         <EntityType Name="tblSaleOrder">
           <Key>
@@ -449,6 +464,7 @@ warning 6002: The table/view 'Kitchen.dbo.vInvoice' does not have a primary key 
           <EntitySet Name="tblItem" EntityType="Self.tblItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblItemGroup" EntityType="Self.tblItemGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblItemWarehouse" EntityType="Self.tblItemWarehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMenuGroup" EntityType="Self.tblMenuGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSaleOrder" EntityType="Self.tblSaleOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSaleOrderItem" EntityType="Self.tblSaleOrderItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTable" EntityType="Self.tblTable" Schema="dbo" store:Type="Tables" />
@@ -574,6 +590,7 @@ warning 6002: The table/view 'Kitchen.dbo.vInvoice' does not have a primary key 
           <EntitySet Name="vInvoices" EntityType="XDBModel.vInvoice" />
           <EntitySet Name="tblTables" EntityType="XDBModel.tblTable" />
           <EntitySet Name="tblTableGroups" EntityType="XDBModel.tblTableGroup" />
+          <EntitySet Name="tblMenuGroups" EntityType="XDBModel.tblMenuGroup" />
         </EntityContainer>
         <EntityType Name="tblCustomer">
           <Key>
@@ -600,6 +617,8 @@ warning 6002: The table/view 'Kitchen.dbo.vInvoice' does not have a primary key 
           <Property Name="cust_Phone2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="cust_PriceListID" Type="Int32" />
           <Property Name="cust_Zone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tblItem">
           <Key>
@@ -1007,6 +1026,19 @@ warning 6002: The table/view 'Kitchen.dbo.vInvoice' does not have a primary key 
           <Property Name="tblg_Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="tblg_Deleted" Type="Int32" />
         </EntityType>
+        <EntityType Name="tblMenuGroup">
+          <Key>
+            <PropertyRef Name="mnug_MenuGroupID" />
+          </Key>
+          <Property Name="mnug_MenuGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mnug_CreatedBy" Type="Int32" />
+          <Property Name="mnug_CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="mnug_UpdatedBy" Type="Int32" />
+          <Property Name="mnug_UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="mnug_Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="mnug_Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="mnug_Deleted" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1016,6 +1048,8 @@ warning 6002: The table/view 'Kitchen.dbo.vInvoice' does not have a primary key 
           <EntitySetMapping Name="tblCustomers">
             <EntityTypeMapping TypeName="XDBModel.tblCustomer">
               <MappingFragment StoreEntitySet="tblCustomer">
+                <ScalarProperty Name="note" ColumnName="cust_Note" />
+                <ScalarProperty Name="gender" ColumnName="cust_Gender" />
                 <ScalarProperty Name="cust_Zone" ColumnName="cust_Zone" />
                 <ScalarProperty Name="cust_PriceListID" ColumnName="cust_PriceListID" />
                 <ScalarProperty Name="cust_Phone2" ColumnName="cust_Phone2" />
@@ -1457,6 +1491,20 @@ warning 6002: The table/view 'Kitchen.dbo.vInvoice' does not have a primary key 
                 <ScalarProperty Name="tblg_CreatedDate" ColumnName="tblg_CreatedDate" />
                 <ScalarProperty Name="tblg_CreatedBy" ColumnName="tblg_CreatedBy" />
                 <ScalarProperty Name="tblg_TableGroupID" ColumnName="tblg_TableGroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMenuGroups">
+            <EntityTypeMapping TypeName="XDBModel.tblMenuGroup">
+              <MappingFragment StoreEntitySet="tblMenuGroup">
+                <ScalarProperty Name="mnug_Deleted" ColumnName="mnug_Deleted" />
+                <ScalarProperty Name="mnug_Note" ColumnName="mnug_Note" />
+                <ScalarProperty Name="mnug_Name" ColumnName="mnug_Name" />
+                <ScalarProperty Name="mnug_UpdatedDate" ColumnName="mnug_UpdatedDate" />
+                <ScalarProperty Name="mnug_UpdatedBy" ColumnName="mnug_UpdatedBy" />
+                <ScalarProperty Name="mnug_CreatedDate" ColumnName="mnug_CreatedDate" />
+                <ScalarProperty Name="mnug_CreatedBy" ColumnName="mnug_CreatedBy" />
+                <ScalarProperty Name="mnug_MenuGroupID" ColumnName="mnug_MenuGroupID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -27,5 +27,10 @@ namespace X_Admin_API.Models.DTO.Customer
 
         [JsonProperty(Order = 5)]
         public string address { get; set; }
+
+
+        
+        public string gender { get; set; }
+        public string note { get; set; }
     }
 }
