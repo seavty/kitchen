@@ -41,5 +41,6 @@ namespace X_Admin_API.Models.DB
         public virtual DbSet<tblTable> tblTables { get; set; }
         public virtual DbSet<tblTableGroup> tblTableGroups { get; set; }
         public virtual DbSet<tblMenuGroup> tblMenuGroups { get; set; }
+        public virtual DbSet<tblMenu> tblMenus { get; set; }
     }
 }

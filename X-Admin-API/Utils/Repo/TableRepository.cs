@@ -31,7 +31,7 @@ namespace X_Admin_API.Repository.Repo
             if (checkTableGroup == null)
                 throw new HttpException((int)HttpStatusCode.BadRequest, "Table group not exist");
 
-            var checkTableName = await db.tblTables.FirstOrDefaultAsync(r => r.tabl_Deleted == null && r.tabl_Name == newDTO.tabl_Name); // check whether itemgroup name exist or not
+            var checkTableName = await db.tblTables.FirstOrDefaultAsync(r => r.tabl_Deleted == null && r.tabl_Name == newDTO.menu_Name); // check whether itemgroup name exist or not
             if (checkTableName != null)
                 throw new HttpException((int)HttpStatusCode.BadRequest, "This table name already exsits");
 
@@ -104,7 +104,7 @@ namespace X_Admin_API.Repository.Repo
         public async Task<TableViewDTO> Edit(TableEditDTO editDTO)
         {
             editDTO = StringHelper.TrimStringProperties(editDTO);
-            var record = db.tblTables.FirstOrDefault(r => r.tabl_Deleted == null && r.tabl_TableID == editDTO.tabl_TableID);
+            var record = db.tblTables.FirstOrDefault(r => r.tabl_Deleted == null && r.tabl_TableID == editDTO.tabl_TableGroupID);
             if (record == null)
                 throw new HttpException((int)HttpStatusCode.NotFound, "This record has been deleted");
 

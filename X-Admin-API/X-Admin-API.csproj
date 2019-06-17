@@ -212,6 +212,9 @@
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ItemGroupController.cs" />
     <Compile Include="Controllers\WarehouseController.cs" />
+    <Compile Include="Models\DB\tblMenu.cs">
+      <DependentUpon>XModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DB\tblMenuGroup.cs">
       <DependentUpon>XModel.tt</DependentUpon>
     </Compile>
@@ -225,6 +228,10 @@
     <Compile Include="Models\DTO\MenuGroup\MenuGroupEditDTO.cs" />
     <Compile Include="Models\DTO\MenuGroup\MenuGroupNewDTO.cs" />
     <Compile Include="Models\DTO\MenuGroup\MenuGroupViewDTO.cs" />
+    <Compile Include="Models\DTO\Menu\MenuBaseDTO.cs" />
+    <Compile Include="Models\DTO\Menu\MenuEditDTO.cs" />
+    <Compile Include="Models\DTO\Menu\MenuNewDTO.cs" />
+    <Compile Include="Models\DTO\Menu\MenuViewDTO.cs" />
     <Compile Include="Models\DTO\TableGroup\TableGroupBase.cs" />
     <Compile Include="Models\DTO\TableGroup\TableGroupEditDTO.cs" />
     <Compile Include="Models\DTO\TableGroup\TableGroupNewDTO.cs" />
@@ -348,6 +355,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Helper\CryptLib.cs" />
     <Compile Include="Utils\Repo\MenuGroupRepository.cs" />
+    <Compile Include="Utils\Repo\MenuRepository.cs" />
     <Compile Include="Utils\Repo\TableRepository.cs" />
     <Compile Include="Utils\Repo\TableGroupRepository.cs" />
     <Compile Include="Utils\Repo\CustomerRepository.cs" />
